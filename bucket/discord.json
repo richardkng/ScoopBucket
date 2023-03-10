@@ -1,0 +1,33 @@
+{
+    "version": "1.0.9006",
+    "description": "Free Voice and Text Chat",
+    "homepage": "https://discordapp.com/",
+    "license": {
+        "identifier": "Freeware",
+        "url": "https://discordapp.com/terms"
+    },
+    "url": "https://dl.discordapp.net/distro/app/stable/win/x86/1.0.9006/DiscordSetup.exe",
+    "hash": "99f427a688d6f00735c209c0de1aaa615aa630f4fbe9108f36212df9464cc869",
+    "installer": {
+        "script": [
+            "Start-Process -wait $dir\\DiscordSetup.exe -ArgumentList /silent, /v, /qn -PassThru",
+            "Start-Sleep -s 10",
+            "Remove-Item $dir\\DiscordSetup.exe",
+            "Move-Item -Path $env:LOCALAPPDATA\\Discord -Destination $dir"
+        ]
+    },
+    "checkver": {
+        "script": [
+            "$download_url = 'https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x86'",
+            "$download = cache_path 'discord-latest' 'unknown' $download_url",
+            "do_dl $download_url $download",
+            "$version = (Get-Item $download).VersionInfo.ProductVersion",
+            "Move-Item -Force $download -Destination (cache_path 'discord-latest' $version $download_url)",
+            "return $version"
+        ],
+        "regex": "(.+)"
+    },
+    "autoupdate": {
+        "url": "https://dl.discordapp.net/distro/app/stable/win/x86/$version/DiscordSetup.exe"
+    }
+}
