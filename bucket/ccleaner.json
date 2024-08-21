@@ -1,10 +1,10 @@
 {
-    "version": "6.26.11169",
+    "version": "6.27.11214",
     "description": "Number-one tool for cleaning PC",
     "homepage": "https://www.ccleaner.com/ccleaner",
     "license": "Freeware",
     "url": "https://www.ccleaner.com/ccleaner/download/standard",
-    "hash": "0771e464c51e2ff326f6921babfae9fec66641992311049e86240645c5ce018e",
+    "hash": "57466b27c9231542e528afe6b1142708197215008374a5a19372230658ead527",
     "pre_install": [
         "if (!(Test-Path \"$persist_dir\\ccleaner.ini\")) {",
         "   Set-Content \"$dir\\ccleaner.ini\" @('[Options]', 'UpdateAuto=0', 'UpdateNotify=0', 'UpdateCheck=0', 'HelpImproveCCleaner=0') -Encoding ASCII",
